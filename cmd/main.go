@@ -8,6 +8,7 @@ import (
 )
 
 func main() {
+
 	db.InitDB()
 
 	e := echo.New()
