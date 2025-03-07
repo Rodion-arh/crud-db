@@ -1,6 +1,8 @@
 package db
 
 import (
+	"crud-db/internal/handler"
+	"crud-db/internal/models"
 	"fmt"
 	"log"
 	"os"
@@ -10,7 +12,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func initDB() {
+func InitDB() {
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatalf("Error loading .env file: %v", err)
@@ -27,12 +29,12 @@ func initDB() {
 	fmt.Println(psqlInfo)
 
 	var errConn error
-	DB, errConn = gorm.Open(postgres.Open(psqlInfo), &gorm.Config{})
+	handler.DB, errConn = gorm.Open(postgres.Open(psqlInfo), &gorm.Config{})
 
 	if errConn != nil {
 		log.Fatalf("Couldn't connect to the database: %v", errConn)
 	}
-	DB.AutoMigrate(&Message{})
+	handler.DB.AutoMigrate(&models.Message{})
 
 	fmt.Println("Database connected successfully!")
 }

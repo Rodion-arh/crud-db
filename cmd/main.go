@@ -1,18 +1,19 @@
 package main
 
 import (
-	"C:\Users\Rodion\stepic\internal\db"
-	"gorm.io/gorm"
+	"crud-db/internal/db"
+	"crud-db/internal/handler"
+
+	"github.com/labstack/echo"
 )
 
-var DB *gorm.DB
-
 func main() {
-	initDB()
+	db.InitDB()
+
 	e := echo.New()
-	e.GET("/message", GetHandler)
-	e.POST("/message", PostHandler)
-	e.PATCH("message/:id", PathcHandler)
-	e.DELETE("message/:id", DeleteHandler)
+	e.GET("/message", handler.GetHandler)
+	e.POST("/message", handler.PostHandler)
+	e.PATCH("message/:id", handler.PathcHandler)
+	e.DELETE("message/:id", handler.DeleteHandler)
 	e.Start(":8080")
 }
