@@ -1,9 +1,8 @@
-module STEPIC
+module crud-db
 
 go 1.23.2
 
 require (
-	github.com/joho/godotenv v1.5.1
 	github.com/labstack/echo v3.3.10+incompatible
 	gorm.io/driver/postgres v1.5.11
 	gorm.io/gorm v1.25.12
